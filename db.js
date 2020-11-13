@@ -24,9 +24,7 @@ const Purchases = db.define('purchases',{
     count:{
         type:INTEGER
     },
-    date:{
-        type:DATE
-    }
+    date:DATE
 })
 
 Purchases.belongsTo(People);

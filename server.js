@@ -30,7 +30,10 @@ app.get('/',async(req,res,next)=>{
             Places.findAll(),
             Things.findAll(),
             Purchases.findAll({
-                include:[People,Places,Things]
+                include:[People,Places,Things],
+                order:[
+                    ['id']
+                ]
             })
         ])  
     
@@ -88,7 +91,7 @@ app.get('/',async(req,res,next)=>{
             <ul>
             ${purchases.map(elem=>`
                 <li>
-                ${elem.person.name} purchased ${elem.count} ${elem.thing.name} in ${elem.place.name} on ${elem.date.getFullYear()}-${elem.date.getMonth()}-${elem.date.getDate()}
+                ${elem.person.name} purchased ${elem.count} ${elem.thing.name} in ${elem.place.name} on ${elem.date.getFullYear()}-${elem.date.getMonth()+1}-${elem.date.getDate()+1}
                 <form method = 'POST' action='/purchases/${elem.id}?_method=DELETE'>
                 <button>X</button>
                 </form>
